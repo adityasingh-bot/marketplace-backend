@@ -5,8 +5,9 @@ const app = express();
 const port = process.env.PORT;
 const user = require('./routes/user');
 const product = require('./routes/product');
-// const platform = require('./routes/platform');
-// const allotment = require('./routes/allotment');
+const trade = require('./routes/trade');
+const sales = require('./routes/sales');
+const purchase = require('./routes/purchase')
 const connectDB = require('./config/connection');
 const tokenConfig = require('./config/verifyToken.js');
 //Connection Invoke
@@ -17,6 +18,9 @@ app.use(cors());
 app.use(express.json());
 app.use('/user', user);
 app.use('/product', tokenConfig.verifyToken, product);
+app.use('/trade', tokenConfig.verifyToken, trade);
+app.use('/sales', tokenConfig.verifyToken, sales);
+app.use('/purchase', tokenConfig.verifyToken, purchase);
 // app.use('/asset', tokenConfig.verifyToken, asset);
 // app.use('/platform', tokenConfig.verifyToken, platform);
 // app.use('/allotment', tokenConfig.verifyToken, allotment);
