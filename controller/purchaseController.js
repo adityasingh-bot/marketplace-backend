@@ -10,3 +10,15 @@ exports.purchaseRecord = async (req, res)=>{
         res.status(500).json({response: err})
     }
 }
+
+exports.getPurchaseProducts = async (req,res)=>{
+    try{        
+        const purchase = await Purchase.find();
+        if(!purchase){
+            return res.status(404).json({ response: 'trade product not found' });
+        }
+        res.status(200).json({response: purchase});
+    }catch(err){
+        res.status(500).json({response: err});
+    }
+}
